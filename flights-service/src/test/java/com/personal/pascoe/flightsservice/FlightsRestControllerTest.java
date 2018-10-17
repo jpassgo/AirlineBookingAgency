@@ -33,6 +33,7 @@ public class FlightsRestControllerTest {
                         LocalDateTime.of(2018, 10, 01, 3, 45),
                         LocalDateTime.of(2018, 10, 01, 6, 45)));
         when(mockFlightsService.getAllFlights()).thenReturn(flights);
+        flightsRestController = new FlightsRestController(mockFlightsService);
         assertTrue(flights.get(0).equals(flightsRestController.getFlights().get(0)));
     }
 
@@ -46,5 +47,4 @@ public class FlightsRestControllerTest {
         assert(flight.getFlightNumber()).equals(mockFlightsService.getFlightByFlightNumber(1L).getFlightNumber());
     }
 
-    
 }

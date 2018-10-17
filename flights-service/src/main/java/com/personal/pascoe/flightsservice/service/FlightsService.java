@@ -14,7 +14,7 @@ public class FlightsService {
     }
 
     public List<Flight> getAllFlights() {
-        return null;
+        return flightRepository.findAll();
     }
 
     public Flight getFlightByFlightNumber(long flightNumber) {
