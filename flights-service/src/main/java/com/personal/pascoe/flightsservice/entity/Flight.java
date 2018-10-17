@@ -17,11 +17,24 @@ public class Flight {
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
 
-    public Flight(Airport departureAirport, Airport destinationAirport, LocalDateTime departureTime, LocalDateTime arrivalTime) {
+    public Flight(Long flightNumber, Airport departureAirport, Airport destinationAirport, LocalDateTime departureTime, LocalDateTime arrivalTime) {
+        this.flightNumber = flightNumber;
         this.departureAirport = departureAirport;
         this.destincationAirport = destinationAirport;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+        System.out.println("Hllo");
+    }
+
+    public Flight(Airport departureAirport, Airport destincationAirport, LocalDateTime departureTime, LocalDateTime arrivalTime) {
+        this.departureAirport = departureAirport;
+        this.destincationAirport = destincationAirport;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
+
+    public Long getFlightNumber() {
+        return this.flightNumber;
     }
 
     public Airport getDepartureAirport() {
