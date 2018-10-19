@@ -1,30 +1,31 @@
 package com.personal.pascoe.flightsservice.controller;
 
 import com.personal.pascoe.flightsservice.entity.Flight;
-import com.personal.pascoe.flightsservice.model.Airport;
+import com.personal.pascoe.flightsservice.model.Passenger;
 import com.personal.pascoe.flightsservice.service.FlightsService;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
+@AllArgsConstructor
+@RestController
 public class FlightsRestController {
 
     private FlightsService flightsService;
 
-    public FlightsRestController(FlightsService flightsService) {
-        this.flightsService = flightsService;
+    @GetMapping("/flights")
+    public List<Flight> getFlights() {
+       return flightsService.getAllFlights();
     }
 
-    public List<Flight> getFlights() {
+    @GetMapping("/flights/{flightNumber}")
+    public Flight getFlightByFlightNumber(@RequestParam Long flightNumber) {
+        return flightsService.getFlightByFlightNumber(flightNumber);
+    }
 
-       /* return Arrays.asList(
-                new Flight(new Airport("ohare"), new Airport("LAX"),
-                        LocalDateTime.of(2018, 10, 01, 3, 45),
-                        LocalDateTime.of(2018, 10, 01, 6, 45)),
-                new Flight(new Airport("Lax"), new Airport("Ohare"),
-                        LocalDateTime.of(2018, 10, 01, 3, 45),
-                        LocalDateTime.of(2018, 10, 01, 6, 45)));*/
-       return flightsService.getAllFlights();
+    @PostMapping("/flights/{flightNumber}")
+    public String addPassengerToFlight(@RequestParam Long flightNumber, @RequestBody Passenger passenger) {
+        return flightsService.addPassenegerToManifest(flightNumber, passenger).toString();
     }
 }

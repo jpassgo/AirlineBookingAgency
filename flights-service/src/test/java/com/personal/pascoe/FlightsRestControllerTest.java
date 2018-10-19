@@ -1,4 +1,4 @@
-package com.personal.pascoe.flightsservice;
+package com.personal.pascoe;
 
 import com.personal.pascoe.flightsservice.controller.FlightsRestController;
 import com.personal.pascoe.flightsservice.entity.Flight;
@@ -19,9 +19,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class FlightsRestControllerTest {
+
     @Mock
     FlightsService mockFlightsService = mock(FlightsService.class);
-    FlightsRestController flightsRestController;
+    FlightsRestController flightsRestController = new FlightsRestController(mockFlightsService);
 
     @Test
     public void getFlights_returnsListOfFlights() {
@@ -43,8 +44,25 @@ public class FlightsRestControllerTest {
                 new Airport("LAX"),
                 LocalDateTime.of(2018, 10, 1, 2, 10),
                 LocalDateTime.of(2018, 10, 1, 5, 12));
-        when(mockFlightsService.getFlightByFlightNumber(1L)).thenReturn(flight);
-        assert(flight.getFlightNumber()).equals(mockFlightsService.getFlightByFlightNumber(1L).getFlightNumber());
+        when(flightsRestController.getFlightByFlightNumber(1L)).thenReturn(flight);
+        assert(flight.getFlightNumber()).equals(flightsRestController.getFlightByFlightNumber(1L).getFlightNumber());
     }
+
+    @Test
+    public void addPassengerToManifest() {
+        Flight flight = new Flight(1L, new Airport("ohare"),
+                new Airport("LAX"),
+                LocalDateTime.of(2018, 10, 1, 2, 10),
+                LocalDateTime.of(2018, 10, 1, 5,    12));
+        mockFlightsService.addFlight(flight);
+
+  /*     when(mockFlightsService.addPassenegerToManifest(1L,
+                new Passenger("Name", "Dob", "SeatNumber"))).thenReturn(1);
+        flightsRestController = new FlightsRestController(mockFlightsService);
+
+        assertEquals(flightsRestController.addPassengerToFlight(1L,
+                new Passenger("Name", "Dob", "SeatNumber")), String.valueOf(1));*/
+    }
+
 
 }

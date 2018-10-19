@@ -16,6 +16,7 @@ public class Flight {
     private Airport destincationAirport;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
+    private int passengerCount;
 
     public Flight(Long flightNumber, Airport departureAirport, Airport destinationAirport, LocalDateTime departureTime, LocalDateTime arrivalTime) {
         this.flightNumber = flightNumber;
@@ -83,5 +84,13 @@ public class Flight {
     @Override
     public int hashCode() {
         return Objects.hash(departureAirport, destincationAirport, departureTime, arrivalTime);
+    }
+
+    public void increasePassengerCount() {
+        this.passengerCount++;
+    }
+
+    public int getPassengerCount() {
+        return this.passengerCount;
     }
 }
