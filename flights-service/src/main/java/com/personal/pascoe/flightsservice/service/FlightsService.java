@@ -3,18 +3,16 @@ package com.personal.pascoe.flightsservice.service;
 import com.personal.pascoe.flightsservice.dao.FlightRepository;
 import com.personal.pascoe.flightsservice.entity.Flight;
 import com.personal.pascoe.flightsservice.model.Passenger;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class FlightsService {
 
     private FlightRepository flightRepository;
-
-    public FlightsService(FlightRepository flightRepository) {
-        this.flightRepository = flightRepository;
-    }
 
     public List<Flight> getAllFlights() {
         return flightRepository.findAll();
