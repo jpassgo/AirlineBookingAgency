@@ -20,12 +20,12 @@ public class FlightsRestController {
     }
 
     @GetMapping("/flights/{flightNumber}")
-    public Flight getFlightByFlightNumber(@RequestParam Long flightNumber) {
+    public Flight getFlightByFlightNumber(@PathVariable Long flightNumber) {
         return flightsService.getFlightByFlightNumber(flightNumber);
     }
 
     @PostMapping("/flights/{flightNumber}")
-    public String addPassengerToFlight(@RequestParam Long flightNumber, @RequestBody Passenger passenger) {
+    public String addPassengerToFlight(@PathVariable Long flightNumber, @RequestBody Passenger passenger) {
         return flightsService.addPassenegerToManifest(flightNumber, passenger).toString();
     }
 }
