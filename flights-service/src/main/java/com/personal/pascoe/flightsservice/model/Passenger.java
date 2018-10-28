@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,6 +14,6 @@ import org.springframework.stereotype.Component;
 public class Passenger {
 
     private String name;
-    private String dob;
+    private LocalDate dob;
     private String seatNumber;
 }
