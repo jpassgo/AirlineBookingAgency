@@ -1,11 +1,10 @@
 package com.personal.pascoe.flightsservice.model;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @Component
 public class Passenger {
 
-    private String name;
-    private LocalDate dob;
-    private String seatNumber;
+  private String name;
+  private LocalDate dob;
+  private String seatNumber;
 }
