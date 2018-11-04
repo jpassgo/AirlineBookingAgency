@@ -7,7 +7,12 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("com.diffplug.spotless:spotless-plugin-gradle:3.16.0")
     }
+}
+
+plugins {
+    id "com.diffplug.gradle.spotless" version "3.16.0"
 }
 
 apply plugin: 'java'
@@ -23,14 +28,15 @@ repositories {
     mavenCentral()
 }
 
-
 ext {
     springCloudVersion = 'Finchley.SR1'
 }
 
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-web')
+    compile('com.google.googlejavaformat:google-java-format:1.6')
     runtimeOnly('com.h2database:h2')
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
@@ -39,5 +45,15 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        // optional: you can specify a specific version and/or switch to AOSP style
+//        googleJavaFormat('1.1').aosp()
+        // you can then layer other format steps, such as
+//        licenseHeaderFile 'spotless.license.java'
     }
 }
