@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
@@ -24,7 +26,15 @@ public class UserAccountRestControllerTest {
 
     @Test
     public void getUserAccount() {
-        UserAccount userAccount = new UserAccount(new Long(1), "john");
+        UserAccount userAccount = new UserAccount(
+                new Long(1),
+                "john",
+                LocalDate.of(1995, 04, 9),
+                "Jeff@jeff.com",
+                "501 street addr",
+                "Chicago",
+                "Illinois",
+                "60069");
 
         when(userAccountService.getUserAccountById(anyLong())).thenReturn(userAccount);
         assertEquals(
@@ -33,4 +43,7 @@ public class UserAccountRestControllerTest {
                         .getBody()
                         .getName());
     }
+
+
+
 }

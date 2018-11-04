@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -17,4 +18,10 @@ public class UserAccount {
     @Id @GeneratedValue
     Long id;
     String name;
+    LocalDate dob;
+    String emailAddress;
+    String streetAddress;
+    String city;
+    String state;
+    String zipcode;
 }
