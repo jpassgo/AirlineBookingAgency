@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserAccountService {
 
-  UserAccountRepository userAccountRepository;
+    UserAccountRepository userAccountRepository;
 
-  public UserAccount getUserAccountById(Long userAccountId) {
-    return userAccountRepository.findById(userAccountId).isPresent()
-        ? userAccountRepository.findById(userAccountId).get()
-        : null;
-  }
+    public UserAccount getUserAccountById(Long userAccountId) {
+        return userAccountRepository.findById(userAccountId).isPresent()
+                ? userAccountRepository.findById(userAccountId).get()
+                : null;
+    }
 
-  public UserAccount addUserAccount(UserAccount userAccount) {
-    return userAccountRepository.save(userAccount);
-  }
+    public UserAccount addUserAccount(UserAccount userAccount) {
+        return userAccountRepository.save(userAccount);
+    }
 }

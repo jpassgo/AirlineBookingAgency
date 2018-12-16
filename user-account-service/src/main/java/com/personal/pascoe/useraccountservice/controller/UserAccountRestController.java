@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class UserAccountRestController {
 
-  UserAccountService userAccountService;
+    UserAccountService userAccountService;
 
-  @GetMapping("/useraccounts/{userAccountId}")
-  public ResponseEntity<UserAccount> getUserAccount(@PathVariable Long userAccountId) {
-    return new ResponseEntity(userAccountService.getUserAccountById(userAccountId), HttpStatus.OK);
-  }
+    @GetMapping("/useraccounts/{userAccountId}")
+    public ResponseEntity<UserAccount> getUserAccount(@PathVariable Long userAccountId) {
+        return new ResponseEntity(userAccountService.getUserAccountById(userAccountId), HttpStatus.OK);
+    }
 
-  @PostMapping("/useraccounts")
-  public UserAccount putUserAccount(@RequestBody UserAccount userAccount) {
-    return userAccountService.addUserAccount(userAccount);
-  }
+    @PostMapping("/useraccounts")
+    public UserAccount putUserAccount(@RequestBody UserAccount userAccount) {
+        return userAccountService.addUserAccount(userAccount);
+    }
 }

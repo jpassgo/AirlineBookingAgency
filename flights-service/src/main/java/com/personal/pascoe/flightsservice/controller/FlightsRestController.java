@@ -3,11 +3,12 @@ package com.personal.pascoe.flightsservice.controller;
 import com.personal.pascoe.flightsservice.entity.Flight;
 import com.personal.pascoe.flightsservice.model.Passenger;
 import com.personal.pascoe.flightsservice.service.FlightsService;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController

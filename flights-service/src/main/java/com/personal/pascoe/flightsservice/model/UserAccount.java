@@ -18,8 +18,7 @@ import java.time.LocalDate;
 @JsonAppend
 public class UserAccount {
 
-  @Id @GeneratedValue @JsonIgnore
-  Long id;
+  @Id @GeneratedValue @JsonIgnore Long id;
   String name;
   LocalDate dob;
   String emailAddress;
