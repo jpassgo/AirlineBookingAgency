@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient("userAccounts")
 public interface UserAccountFeignClient {
 
-  @RequestMapping(method = RequestMethod.GET, value = "/useraccounts/{userAccountId}")
+  @RequestMapping(method = RequestMethod.GET, value = "/users/{userAccountId}")
   UserAccount getUserAccount(@Param("userAccountId") long userAccountId);
 }
