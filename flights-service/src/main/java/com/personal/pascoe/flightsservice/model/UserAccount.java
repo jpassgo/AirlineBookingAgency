@@ -1,24 +1,20 @@
 package com.personal.pascoe.flightsservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonAppend
 public class UserAccount {
 
-  @Id @GeneratedValue @JsonIgnore Long id;
+  Long id;
   String name;
   LocalDate dob;
   String emailAddress;
@@ -26,4 +22,5 @@ public class UserAccount {
   String city;
   String state;
   String zipcode;
+  List<Booking> bookingList;
 }
