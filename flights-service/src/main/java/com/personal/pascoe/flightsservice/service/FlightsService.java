@@ -2,10 +2,10 @@ package com.personal.pascoe.flightsservice.service;
 
 import com.personal.pascoe.flightsservice.dao.FlightRepository;
 import com.personal.pascoe.flightsservice.entity.Flight;
-import com.personal.pascoe.flightsservice.model.Passenger;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -23,14 +23,14 @@ public class FlightsService {
         : null;
   }
 
-  public Integer addPassenegerToManifest(Long flightNumber, Passenger passenger) {
+  //TODO: Return something useful from this method
+  public void addPassengerToFlight(Long flightNumber, Long userAccountId) {
     Flight flight = getFlightByFlightNumber(flightNumber);
-    flight.increasePassengerCount();
+    flight.addPassenger(userAccountId);
     flightRepository.save(flight);
-    return flight.getPassengerCount();
   }
 
-  public void addFlight(Flight flight) {
-    flightRepository.save(flight);
+  public Flight addFlight(Flight flight) {
+    return flightRepository.save(flight);
   }
 }
