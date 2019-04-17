@@ -1,17 +1,21 @@
 package com.personal.pascoe.flightsservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.personal.pascoe.flightsservice.model.Airport;
-import java.time.LocalDateTime;
-import javax.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.ResourceSupport;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
-@AllArgsConstructor
 @Entity
-public class Flight {
+@EqualsAndHashCode(callSuper = false)
+public class Flight extends ResourceSupport {
 
-  @Id @GeneratedValue private Long flightNumber;
+  @Id @GeneratedValue private long flightNumber;
 
   @Embedded
   @AttributeOverride(name = "name", column = @Column(name = "departure_airport"))
@@ -22,22 +26,31 @@ public class Flight {
 
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
-  private int passengerCount;
 
+  @ElementCollection(targetClass=Long.class)
+  private List<Long> passengers;
+
+  @JsonCreator
   public Flight(
-      Long flightNumber,
+      long flightNumber,
       Airport departureAirport,
       Airport destinationAirport,
       LocalDateTime departureTime,
-      LocalDateTime arrivalTime) {
-    this(flightNumber, departureAirport, destinationAirport, departureTime, arrivalTime, 0);
+      LocalDateTime arrivalTime,
+      List<Long> passengers) {
+    this.flightNumber = flightNumber;
+    this.departureAirport = departureAirport;
+    this.destinationAirport = destinationAirport;
+    this.departureTime = departureTime;
+    this.arrivalTime = arrivalTime;
+    this.passengers = passengers;
   }
 
-  public void increasePassengerCount() {
-    this.passengerCount++;
+  public void addPassenger(Long userAccountId) {
+    this.passengers.add(userAccountId);
   }
 
   public int getPassengerCount() {
-    return this.passengerCount;
+    return this.passengers.size();
   }
 }
