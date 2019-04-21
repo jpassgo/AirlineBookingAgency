@@ -1,7 +1,6 @@
 package com.personal.pascoe.flightsservice.controller;
 
 import com.personal.pascoe.flightsservice.entity.Flight;
-import com.personal.pascoe.flightsservice.model.Passenger;
 import com.personal.pascoe.flightsservice.service.FlightsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,35 +9,41 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 @AllArgsConstructor
-@RestController
+@RestController("/flights")
 public class FlightsRestController {
 
   private FlightsService flightsService;
 
-  @GetMapping("/flights")
+  @GetMapping
   public List<Flight> getFlights() {
     return flightsService.getAllFlights();
   }
 
-  @GetMapping("/flights/{flightNumber}")
-  public Flight getFlightByFlightNumber(@PathVariable Long flightNumber) {
-    return flightsService.getFlightByFlightNumber(flightNumber);
+  @GetMapping("/{flightNumber}")
+  public ResponseEntity<Flight> getFlightByFlightNumber(@PathVariable Long flightNumber) {
+    Flight flight = flightsService.getFlightByFlightNumber(flightNumber);
+    flight.add(linkTo(methodOn(Flight.class).getFlightNumber()).withSelfRel());
+
+    return new ResponseEntity(flight, HttpStatus.OK);
   }
 
-  @PutMapping("/flights/{flightNumber}")
+  @PutMapping("/{flightNumber}")
   public ResponseEntity<String> addPassengerToFlight(
-      @PathVariable Long flightNumber, @RequestBody Passenger passenger) {
-    ResponseEntity<String> response =
-        new ResponseEntity<>(
-            flightsService.addPassenegerToManifest(flightNumber, passenger).toString(),
-            HttpStatus.OK);
-    return response;
+      @PathVariable long flightNumber, @RequestBody Long userAccountId) {
+    flightsService.addPassengerToFlight(flightNumber, userAccountId);
+
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @PostMapping("/flights")
+  @PostMapping
   public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
-    flightsService.addFlight(flight);
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    Flight createdFlight = flightsService.addFlight(flight);
+    flight.add(linkTo(methodOn(Flight.class).getFlightNumber()).withSelfRel());
+
+    return new ResponseEntity(createdFlight, HttpStatus.CREATED);
   }
 }
