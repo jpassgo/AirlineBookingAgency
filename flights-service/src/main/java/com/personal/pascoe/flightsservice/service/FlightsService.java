@@ -2,10 +2,9 @@ package com.personal.pascoe.flightsservice.service;
 
 import com.personal.pascoe.flightsservice.dao.FlightRepository;
 import com.personal.pascoe.flightsservice.entity.Flight;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -23,7 +22,7 @@ public class FlightsService {
         : null;
   }
 
-  //TODO: Return something useful from this method
+  // TODO: Return something useful from this method
   public void addPassengerToFlight(Long flightNumber, Long userAccountId) {
     Flight flight = getFlightByFlightNumber(flightNumber);
     flight.addPassenger(userAccountId);

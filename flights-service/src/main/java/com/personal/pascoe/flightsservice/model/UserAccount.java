@@ -1,12 +1,11 @@
 package com.personal.pascoe.flightsservice.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
