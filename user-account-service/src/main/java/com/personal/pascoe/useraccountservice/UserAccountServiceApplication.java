@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 public class UserAccountServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(UserAccountServiceApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(UserAccountServiceApplication.class, args);
+  }
 }
