@@ -2,13 +2,16 @@ package com.personal.pascoe.flightsservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.personal.pascoe.flightsservice.model.Airport;
-import java.time.LocalDateTime;
-import java.util.List;
-import javax.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.ResourceSupport;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Builder
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
