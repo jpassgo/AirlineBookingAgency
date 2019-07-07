@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient("userAccounts")
+@FeignClient(name = "user-account-service")
 public interface UserAccountFeignClient {
 
   @RequestMapping(method = RequestMethod.GET, value = "/users/{userAccountId}")
