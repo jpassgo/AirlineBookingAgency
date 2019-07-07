@@ -34,9 +34,9 @@ ext {
 
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-config-server:2.0.2.RELEASE')
-    compile('com.google.googlejavaformat:google-java-format:1.6')
-    compile('com.netflix.eureka:eureka-client:1.9.8')
+    compile group: 'org.springframework.cloud', name:'spring-cloud-config-client', version: '2.0.2.RELEASE'
+    compile group: 'com.google.googlejavaformat', name:'google-java-format', version:'1.6'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version: '1.4.6.RELEASE'
     compile('io.springfox:springfox-swagger-ui:2.9.2')
     compile('io.springfox:springfox-swagger2:2.9.2')
     compile('org.springframework.hateoas:spring-hateoas:0.25.1.RELEASE')
