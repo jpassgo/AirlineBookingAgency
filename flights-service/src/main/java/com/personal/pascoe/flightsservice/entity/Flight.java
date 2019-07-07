@@ -2,19 +2,20 @@ package com.personal.pascoe.flightsservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.personal.pascoe.flightsservice.model.Airport;
-import java.time.LocalDateTime;
-import java.util.List;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.ResourceSupport;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
 public class Flight extends ResourceSupport {
 
-  @Id @GeneratedValue private long flightNumber;
+  @Id @GeneratedValue private Long flightNumber;
 
   @Embedded
   @AttributeOverride(name = "name", column = @Column(name = "departure_airport"))
