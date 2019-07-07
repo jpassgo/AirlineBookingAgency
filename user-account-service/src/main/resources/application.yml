@@ -1,6 +1,23 @@
 spring:
   application:
     name: user-account-service
+  cloud:
+      config:
+        server:
+          git:
+            uri: https://github.com/jpassgo/user-account-service.git
 
 server:
-  port: 8082
+  port: 8081
+
+feign:
+  client:
+    user-account:
+      url: http://localhost:8081
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761
+    registerWithEureka: true
+    fetchRegistry: true
